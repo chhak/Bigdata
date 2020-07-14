@@ -6,9 +6,10 @@
 from bs4 import BeautifulSoup as bs
 import urllib.request as req
 
-html = req.urlopen('https://news.naver.com/').read()
+html = req.urlopen('https://datalab.naver.com/keyword/realtimeList.naver?where=main').read()
 
 dom = bs(html, 'html.parser')
+
 news_titles = dom.select('#section_it > .com_list > div > ul > li > a > strong')
 
 for tit in news_titles:
