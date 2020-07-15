@@ -10,13 +10,11 @@ from selenium import webdriver
 from datetime import datetime
 
 #크롬 가상브라우저 실행
-options.add_argument('headless')
-options.add_argument('window-size=1920x1080')
-options.add_argument("disable-gpu")
-options.add_argument("no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.add_argument("lang=ko_KR")
-browser = webdriver.Chrome('./chromedriver', options=options)
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+browser = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
 browser.implicitly_wait(3)
 
 #네이버 데이터랩 메인 이동
