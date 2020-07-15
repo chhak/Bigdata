@@ -3,6 +3,7 @@
 이름 : 김철학
 내용 : 네이버 실시간 검색어 출력하기
 """
+import os
 import requests as req
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
@@ -21,9 +22,15 @@ browser.get('https://datalab.naver.com/keyword/realtimeList.naver?where=main')
 #네이버 실검 1~10위 파싱
 item_boxs = browser.find_elements_by_css_selector('#content > div > div.selection_area > div.selection_content > div.field_list > div > div > ul:nth-child(1) > li > .item_box')
 
+#디렉터리 생성
+dir = "/home/bigdata/naver/naver-{:%y-%m-%d}".format(datetime.now())
+
+if not os.path.exists(dir):
+	os.makedirs(dir)
+
 #파일로 저장
 fname = "{:%y-%m-%d-%H-%M.txt}".format(datetime.now())
-file = open(fname, mode='w', encoding='utf8')
+file = open(dir+'/'+fname, mode='w', encoding='utf8')
 
 file.write('순위,제목,날짜\n')
 
