@@ -42,4 +42,18 @@ for item in item_boxs:
 #파일닫기
 file.close()
 
+#cron작업 등록
+#crontab -e
+# * * * * * python3 /root/naver.py
+#(분, 시, 일, 월, 요일)
+#매분마다 python3 /root/naver.py 을 실행
 
+#cron데몬 서비스 시작/종료
+#systemctl start crond
+#systemctl stop crond
+
+#cron작업 조회
+#crentab -l 
+
+#cron작업 삭제
+#crentab -r
