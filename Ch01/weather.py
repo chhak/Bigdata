@@ -14,7 +14,7 @@ sess = req.session()
 # 날씨 데이터 요청
 html = sess.get('https://www.weather.go.kr/weather/observation/currentweather.jsp')
 
-#파싱 후 포인트 출력
+#파싱
 dom = bs(html.text, 'html.parser')
 
 # 지역, 시정, 현재기온, 이슬점온도, 체감온도, 일강수, 습도, 풍향, 해면기압
