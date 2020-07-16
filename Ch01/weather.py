@@ -41,16 +41,23 @@ file = open(dir+'/'+fname, mode='w', encoding='utf8')
 file.write('지역,시정,현재기온,이슬점온도,체감온도,일강수,습도,풍향,해면기압\n')
 
 for i in range(0, len(locals)):
+    rs1 = locals[i].text
+    rs2 = visibilities[i].text if visibilities[i].text.strip() else 'NA'
+    rs3 = dews[i].text if dews[i].text.strip() else 'NA'
+    rs4 = sens_temps[i].text if sens_temps[i].text.strip() else 'NA'
+    rs5 = precipitations[i].text if precipitations[i].text.strip() else 'NA'
+    rs6 = humidities[i].text if humidities[i].text.strip() else 'NA'
+    rs7 = direction_winds[i].text if direction_winds[i].text.strip() else 'NA'
+    rs8 = sea_pressures[i].text if sea_pressures[i].text.strip() else 'NA'
 
-    file.write(locals[i].text+','+
-          visibilities[i].text+','+
-          temps[i].text+','+
-          dews[i].text + ',' +
-          sens_temps[i].text + ',' +
-          precipitations[i].text + ',' +
-          humidities[i].text + ',' +
-          direction_winds[i].text + ',' +
-          sea_pressures[i].text+'\n')
+    file.write(rs1+','+
+               rs2+','+
+               rs3+','+
+               rs4+','+
+               rs5+','+
+               rs6+','+
+               rs7+','+
+               rs8+'\n')
 
 #cron작업 등록
 #crontab -e

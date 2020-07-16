@@ -15,9 +15,11 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 browser = webdriver.Chrome('./chromedriver', chrome_options=chrome_options)
+browser.implicitly_wait(3)
 
 #네이버 데이터랩 메인 이동
 browser.get('https://datalab.naver.com/keyword/realtimeList.naver?where=main')
+browser.implicitly_wait(3)
 
 #네이버 실검 1~10위 파싱
 item_boxs = browser.find_elements_by_css_selector('#content > div > div.selection_area > div.selection_content > div.field_list > div > div > ul:nth-child(1) > li > .item_box')
@@ -41,6 +43,9 @@ for item in item_boxs:
 
 #파일닫기
 file.close()
+
+#브라우저 종료
+browser.close()
 
 #cron작업 등록
 #crontab -e
