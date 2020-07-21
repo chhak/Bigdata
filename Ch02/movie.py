@@ -44,9 +44,9 @@ browser.switch_to.frame('pointAfterListIframe')
 browser.implicitly_wait(3)
 
 # 최신순 클릭
-#tag_latest_a = browser.find_element_by_css_selector('#orderCheckbox > ul.sorting_list > li:nth-child(2) > a')
-#tag_latest_a.click()
-#browser.implicitly_wait(3)
+tag_latest_a = browser.find_element_by_css_selector('#orderCheckbox > ul.sorting_list > li:nth-child(2) > a')
+tag_latest_a.click()
+browser.implicitly_wait(3)
 
 page_num = 1
 
@@ -69,24 +69,6 @@ while True:
         print('score :', score.text)
         print('reple :', reple.text)
         print('rdate :', rdate.text)
-
-        # mongodb 접속
-        conn = mongo('mongodb://chhak:1234@192.168.100.101:27017')
-
-        # db선택
-        db = conn.get_database('chhak')
-
-        # collection 선택
-        collection = db.get_collection('movie')
-
-
-        # insert
-        collection.insert_one({'title': title.text,
-                               'code': code,
-                               'score': score.text,
-                               'reple': reple.text,
-                               'rdate': rdate.text})
-
 
     page_num += 1
 
