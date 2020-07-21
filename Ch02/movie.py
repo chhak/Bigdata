@@ -34,10 +34,13 @@ review_tab.click()
 browser.implicitly_wait(3)
 
 #영화제목 수집
-title = browser.find_element_by_css_selector('#content > div.article > div.mv_info_area > div.mv_info > h3 > a')
-href = title.get_attribute('href')
+tit_tag = browser.find_element_by_css_selector('#content > div.article > div.mv_info_area > div.mv_info > h3 > a')
+href = tit_tag.get_attribute('href')
 i = href.rfind('=')+1
+
 code = href[i:]
+title = tit_tag.text
+
 
 # 평점, 리뷰, 날짜 수집을 위해 현재 브라우저를 iframe 페이지로 전환
 browser.switch_to.frame('pointAfterListIframe')
@@ -66,10 +69,26 @@ while True:
         reple = li.find_element_by_css_selector('.score_reple > p > span')
         rdate = li.find_element_by_css_selector('.score_reple > dl > dt > em:nth-child(2)')
 
-        print('score :', score.text)
-        print('reple :', reple.text)
-        print('rdate :', rdate.text)
+        #print('score :', score.text)
+        #print('reple :', reple.text)
+        #print('rdate :', rdate.text)
 
+        #MongoDB 접속
+        conn = mongo('mongodb://chhak:1234@192.168.100.101:27017')
+
+        #DB선택
+        db = conn.get_database('chhak')
+        #Collection 선택
+        collection = db.get_collection('movie_score')
+        #Insert 실행
+        collection.insert_one({'title': title,
+                               'code': code,
+                               'score': score.text,
+                               'reple': reple.text,
+                               'rdate': rdate.text})
+
+
+    print(page_num, '페이지 insert 완료.')
     page_num += 1
 
 
