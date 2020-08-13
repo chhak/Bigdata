@@ -59,6 +59,10 @@ for i in range(0, len(locals)):
                rs7+','+
                rs8+'\n')
 
+
+file.close()
+sess.close()
+
 #cron작업 등록
 #crontab -e
 # * * * * * python3 /root/naver.py

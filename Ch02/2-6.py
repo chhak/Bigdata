@@ -21,11 +21,11 @@ fileHandler.setFormatter(formatter)
 logger.addHandler(fileHandler)
 
 #기록하기
-logger.debug('log debug...')
-logger.info('log info...')
-logger.warning('log warn...')
-logger.error('log error...')
-logger.fatal('log fatal...')
+for i in range(0, 1000000):
+
+    logger.info('%d.log info...' % i)
+
+    print(i)
 
 print('로그 파일 생성완료')
 

@@ -14,6 +14,8 @@ hdfs.make_dir('/sample1')
 #HDFS 파일생성
 text = 'Hello Hadoop! 반갑습니다.'
 hdfs.create_file('/sample/test.txt', text.encode('utf-8'), overwrite=True)
+hdfs.ap
+
 
 print('프로그램 종료...')
 

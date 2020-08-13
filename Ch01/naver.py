@@ -46,6 +46,7 @@ file.close()
 
 #브라우저 종료
 browser.close()
+browser.quit()
 
 #cron작업 등록
 #crontab -e
